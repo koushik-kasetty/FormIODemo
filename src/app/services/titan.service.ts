@@ -19,18 +19,16 @@ export class TitanService {
 
   
   getSeodata(enterPriseItemId: string): Observable<SeoData> {
-console.log('1');
     let username: string = 'ESB';
     let password: string = 'BdL5C35jwNC2K6Vs';
     let headers = new HttpHeaders().set(
       'Authorization', 'Basic ' + btoa(username + ":" + password
       ));
-      console.log('2');
-    headers = headers.append('Access-Control-Allow-Origin', 'https://localhost:3000');
+    headers = headers.append('Access-Control-Allow-Origin', 'http://titand.dexmedia.com/');
     headers = headers.append('Access-Control-Allow-Credentials', 'true');
     headers = headers.append('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE');
-    console.log('3'+headers.getAll);
-    return this.http.get<SeoData>('https://localhost:3000/seo/get/seoproduct/enterpriseItemId/' + enterPriseItemId, {
+    
+    return this.http.get<SeoData>('https://titand.dexmedia.com/common/product/enterpriseItemId/' + enterPriseItemId, {
       headers: headers
     })
       .map(res => res)      
@@ -44,7 +42,7 @@ console.log('1');
       'Authorization', 'Basic ' + btoa(username + ":" + password
       ));
 
-    headers = headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    headers = headers.append('Access-Control-Allow-Origin', 'https://localhost:4000');
     headers = headers.append('Access-Control-Allow-Credentials', 'true');
     headers = headers.append('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE');
 
@@ -114,6 +112,27 @@ console.log('1');
     })
       .map(res => res
       )
+
+  }
+  updateSeoData(seodata){
+    let username: string = 'ESB';
+    let password: string = 'BdL5C35jwNC2K6Vs';
+    let headers = new HttpHeaders().set(
+      'Authorization', 'Basic ' + btoa(username + ":" + password
+      ));
+
+    headers = headers.append('Access-Control-Allow-Origin', 'http://titand.dexmedia.com/');
+    headers = headers.append('Access-Control-Allow-Credentials', 'true');
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE');
+   
+
+    
+   console.log(JSON.stringify(seodata));
+    return this.http.put('https://titand.dexmedia.com/common/put/product/', JSON.stringify(seodata), {
+      headers: headers
+    })
+      .map(res => res)
 
   }
 }

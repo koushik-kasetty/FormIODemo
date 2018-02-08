@@ -5,7 +5,7 @@ import{SeoHeader} from './seoHeader';
 
 export interface SeoData {
     ProductHeader:Tasks,
-    product:SeoHeader,
+    product:Array<SeoHeader>,
     WebsiteUrlList:Array<SeoWebsiteList>,
     CategoryList:Array<SeoCatList>,   
 }
